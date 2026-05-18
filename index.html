@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flash Diag 360° — Équipementiers Automobile | BearingPoint</title>
+  <meta name="description" content="Flash Diag 360° pour les équipementiers automobile : diagnostic industriel augmenté par l'IA. 5 semaines pour identifier 100+ causes racines et activer +10 à 15 points de TRS." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============== NAV ============== -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="BearingPoint">
+        <img src="assets/bp-logo.svg" alt="BearingPoint" class="nav__logo-img" />
+      </a>
+      <nav class="nav__links" aria-label="Navigation principale">
+        <a href="#contexte">Contexte</a>
+        <a href="#demo">Démo</a>
+        <a href="#demarche">Démarche</a>
+        <a href="#accelerateurs">Accélérateurs IA</a>
+        <a href="#resultats">Résultats</a>
+      </nav>
+      <a href="#contact" class="btn btn--primary nav__cta">Prendre RDV →</a>
+    </div>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="hero__container">
+      <div class="hero__content">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Offre BearingPoint · Équipementiers automobile</div>
+        <h1 class="hero__title">
+          <span class="hero__title-line">Flash Diag <span class="hero__highlight">360°</span></span>
+          <span class="hero__title-line">pour les équipementiers</span>
+          <span class="hero__title-line hero__title-line--accent">automobile.</span>
+        </h1>
+        <p class="hero__sub">
+          5 semaines. Un diagnostic industriel augmenté par l'IA. Une trajectoire de productivité activable
+          <strong>sans investissement lourd</strong> dans les standards OEM (IATF 16949, APQP, PPAP).
+        </p>
+        <div class="hero__ctas">
+          <a href="#demo" class="btn btn--primary btn--lg">
+            <span class="btn__play">▶</span>Voir la démo (60 s)
+          </a>
+          <a href="#demarche" class="btn btn--ghost btn--lg">Découvrir la démarche</a>
+        </div>
+        <div class="hero__proof">
+          <div class="proof"><strong>+10 à 15 pts</strong><span>TRS gagnés</span></div>
+          <div class="proof"><strong>−40 %</strong><span>Time-to-reco</span></div>
+          <div class="proof"><strong>×3</strong><span>Profondeur d'analyse</span></div>
+        </div>
+      </div>
+
+      <!-- Animated visual: assembly line meets AI -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="visual-card">
+          <div class="visual-card__head">
+            <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+            <span class="visual-card__title">Flash Diag · Live</span>
+          </div>
+          <div class="visual-card__body">
+            <div class="kpi-row">
+              <div class="kpi-pill"><span>TRS</span><b id="kpiTRS">72%</b><i class="trend up">▲</i></div>
+              <div class="kpi-pill"><span>BPC</span><b id="kpiBPC">91%</b><i class="trend up">▲</i></div>
+              <div class="kpi-pill"><span>NCR</span><b id="kpiNCR">38</b><i class="trend down">▼</i></div>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 320 100" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#E5273E" stop-opacity="0.45"/>
+                    <stop offset="100%" stop-color="#E5273E" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path id="chartPath" d="M0,70 L40,68 L80,60 L120,58 L160,48 L200,38 L240,30 L280,22 L320,12"
+                      fill="none" stroke="#E5273E" stroke-width="2.5"/>
+                <path d="M0,70 L40,68 L80,60 L120,58 L160,48 L200,38 L240,30 L280,22 L320,12 L320,100 L0,100 Z"
+                      fill="url(#g1)"/>
+              </svg>
+              <div class="chart__legend"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span></div>
+            </div>
+            <div class="ia-feed">
+              <div class="ia-feed__item"><i>IA</i> Cluster « formation opérateurs » détecté · 23 verbatims</div>
+              <div class="ia-feed__item"><i>IA</i> Pattern MTBF presse 4 — récurrence J-7</div>
+              <div class="ia-feed__item"><i>IA</i> Cause racine 5-Why · ordo. pièces critiques</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll"><span></span></div>
+  </section>
+
+  <!-- ============== CONTEXTE ============== -->
+  <section class="section section--alt" id="contexte">
+    <div class="container">
+      <div class="section__head">
+        <div class="eyebrow eyebrow--dark"><span class="eyebrow__dot"></span>Contexte &amp; enjeux</div>
+        <h2 class="section__title">Un secteur sous tension <span class="muted">— et une fenêtre d'action courte.</span></h2>
+      </div>
+
+      <div class="context-grid">
+        <article class="ctx-card">
+          <div class="ctx-card__icon">⚠️</div>
+          <h3>Marché thermique en repli brutal</h3>
+          <p><strong>−31 %</strong> de volume 2025 vs 2019 sur le thermique. Pression coûts amplifiée par les droits de douane US (25 %) et la concurrence chinoise.</p>
+        </article>
+        <article class="ctx-card">
+          <div class="ctx-card__icon">⚡</div>
+          <h3>Mur d'investissement vers l'électrification</h3>
+          <p>Bascule rapide à financer alors que les marges s'érodent : R&amp;D batterie, requalification outillages, montée en cadence des plateformes EV.</p>
+        </article>
+        <article class="ctx-card">
+          <div class="ctx-card__icon">📉</div>
+          <h3>Équipementiers sous tension critique</h3>
+          <p><strong>≈40 %</strong> des équipementiers affichent une rentabilité négative — ~1 200 sites France / 4 000 Europe (FIEV/PFA).</p>
+        </article>
+        <article class="ctx-card">
+          <div class="ctx-card__icon">🎯</div>
+          <h3>Productivité à minima de CAPEX</h3>
+          <p>Améliorer TRS, qualité et flux dans les standards OEM (IATF 16949, APQP, PPAP) sans investissement lourd : la valeur est dans l'organisation, les standards, le management visuel.</p>
+        </article>
+      </div>
+
+      <div class="context-quote">
+        <blockquote>
+          « La valeur n'est plus dans le CAPEX. Elle est dans l'organisation, les standards et le management visuel. »
+        </blockquote>
+        <span>— Conviction BearingPoint, Équipementiers automobile</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== DEMO VIDEO ============== -->
+  <section class="section section--demo" id="demo">
+    <div class="container">
+      <div class="section__head section__head--center">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Démo · 60 secondes</div>
+        <h2 class="section__title">La démarche Flash Diag, <span class="text-red">animée.</span></h2>
+        <p class="section__lede">Cliquez sur ▶ et laissez-vous porter par la démonstration.</p>
+      </div>
+
+      <div class="player" id="player">
+        <div class="player__screen" id="playerScreen">
+
+          <!-- Persistent step indicator (visible on phase scenes only) -->
+          <div class="stepper" id="stepper" aria-hidden="true">
+            <div class="stepper__inner">
+              <div class="stepper__title">Démarche Flash Diag 360</div>
+              <div class="stepper__steps">
+                <div class="step" data-step="1">
+                  <span class="step__num">1</span>
+                  <div class="step__body">
+                    <b>Cadrage &amp; Investigation</b>
+                    <span>Semaine 1</span>
+                  </div>
+                </div>
+                <span class="stepper__sep"></span>
+                <div class="step" data-step="2">
+                  <span class="step__num">2</span>
+                  <div class="step__body">
+                    <b>Causes racines &amp; Reco</b>
+                    <span>Semaines 2 – 4</span>
+                  </div>
+                </div>
+                <span class="stepper__sep"></span>
+                <div class="step" data-step="3">
+                  <span class="step__num">3</span>
+                  <div class="step__body">
+                    <b>Synthèse &amp; Business Case</b>
+                    <span>Semaine 5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== Scene 1 — Hook (BP-style impact) ========== -->
+          <div class="scene scene-1 is-active" data-scene="1">
+            <div class="hook">
+              <div class="hook__top">
+                <img src="assets/bp-logo.svg" alt="BearingPoint" class="hook__logo" />
+                <span class="hook__eyebrow">Flash Diag 360 · Équipementiers automobile</span>
+              </div>
+
+              <div class="hook__hero">
+                <span class="hook__big">5</span>
+                <div class="hook__big-side">
+                  <span class="hook__big-lbl">semaines</span>
+                  <!-- BP dotted arrow drawing in -->
+                  <svg class="hook__arrow" viewBox="0 0 140 26" aria-hidden="true">
+                    <g fill="#FF4D52">
+                      <circle cx="4"   cy="13" r="3"/>
+                      <circle cx="18"  cy="13" r="3"/>
+                      <circle cx="32"  cy="13" r="3"/>
+                      <circle cx="46"  cy="13" r="3"/>
+                      <circle cx="60"  cy="13" r="3"/>
+                      <circle cx="74"  cy="13" r="3"/>
+                      <circle cx="88"  cy="13" r="3"/>
+                      <circle cx="102" cy="13" r="3"/>
+                      <circle cx="116" cy="13" r="3"/>
+                      <circle cx="128" cy="8"  r="3"/>
+                      <circle cx="128" cy="18" r="3"/>
+                      <circle cx="136" cy="13" r="3.5"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+              <h3 class="hook__title">
+                <span class="hook__word">du</span>
+                <span class="hook__word">diagnostic</span>
+                <span class="hook__word">au</span>
+                <span class="hook__word hook__word--red">plan d'action chiffré.</span>
+              </h3>
+
+              <p class="hook__sub">Une démarche structurée &amp; augmentée par l'IA, pensée pour les équipementiers automobile.</p>
+            </div>
+          </div>
+
+          <!-- ========== Scene 2 — Context + Methodology overview ========== -->
+          <div class="scene scene-2" data-scene="2">
+            <div class="ctx-vid-wrap">
+              <div class="ctx-card-vid">
+                <div class="ctx-card-vid__head">Pourquoi maintenant ?</div>
+                <div class="ctx-stat-row">
+                  <div class="ctx-stat"><b>−31%</b><span>Volume thermique<br>2025 vs 2019</span></div>
+                  <div class="ctx-stat"><b>+25%</b><span>Droits de douane<br>USA</span></div>
+                  <div class="ctx-stat"><b>≈40%</b><span>Équipementiers<br>en perte</span></div>
+                  <div class="ctx-stat"><b>1 200</b><span>Sites industriels<br>en France</span></div>
+                </div>
+                <div class="ctx-card-vid__verdict">
+                  <span class="verdict-pill">→ Améliorer la productivité <strong>à minima de CAPEX</strong></span>
+                </div>
+              </div>
+
+              <div class="ovw">
+                <div class="ovw__head">Notre démarche · 3 phases · 5 semaines</div>
+                <div class="ovw__cards">
+                  <div class="ovw-card ovw-card--p1">
+                    <span class="ovw-card__num">01</span>
+                    <b>Ingestion &amp; Cadrage</b>
+                    <span class="ovw-card__week">Sem. 1</span>
+                    <span class="ovw-card__txt">IA digère PPAP, FMEA, 8D, données process · génère le guide d'entretien</span>
+                  </div>
+                  <span class="ovw-arrow">→</span>
+                  <div class="ovw-card ovw-card--p2">
+                    <span class="ovw-card__num">02</span>
+                    <b>Diagnostic terrain</b>
+                    <span class="ovw-card__week">Sem. 2 – 4</span>
+                    <span class="ovw-card__txt">NLP classe 300+ verbatims · détecte patterns &amp; causes racines</span>
+                  </div>
+                  <span class="ovw-arrow">→</span>
+                  <div class="ovw-card ovw-card--p3">
+                    <span class="ovw-card__num">03</span>
+                    <b>Plan d'actions chiffré</b>
+                    <span class="ovw-card__week">Sem. 5</span>
+                    <span class="ovw-card__txt">Matrice ICE · roadmap 18 mois · business case auto-généré</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== APP MOCKUP SHELL (shared chrome for phase scenes) ========== -->
+          <div class="app-mock" id="appMock" aria-hidden="true">
+            <div class="app-mock__topbar">
+              <div class="app-mock__brand">
+                <img src="assets/bp-logo.svg" alt="BearingPoint" class="app-mock__logo-img" />
+                <span class="app-mock__title">Flash Diag AI Studio</span>
+                <span class="app-mock__crumb">· Client : Equipementier-X · Site Rouen</span>
+              </div>
+              <div class="app-mock__user">
+                <span class="app-mock__status"><i></i> AI Engine · Live</span>
+                <span class="app-mock__avatar">EC</span>
+              </div>
+            </div>
+            <div class="app-mock__body">
+              <aside class="app-mock__nav">
+                <div class="app-nav__item" data-app-step="1">
+                  <span class="app-nav__num">01</span>
+                  <span class="app-nav__lbl">Ingestion &amp; Cadrage</span>
+                </div>
+                <div class="app-nav__item" data-app-step="2">
+                  <span class="app-nav__num">02</span>
+                  <span class="app-nav__lbl">Diagnostic terrain</span>
+                </div>
+                <div class="app-nav__item" data-app-step="3">
+                  <span class="app-nav__num">03</span>
+                  <span class="app-nav__lbl">Synthèse &amp; Business Case</span>
+                </div>
+                <div class="app-nav__divider"></div>
+                <div class="app-nav__hint">
+                  <span class="app-nav__hint-tag">IA</span>
+                  <p>Agents spécialisés IATF · APQP · 8D actifs sur chaque module</p>
+                </div>
+              </aside>
+
+              <main class="app-mock__main" id="appMain">
+                <div class="app-mock__viewport" id="appViewport">
+                <!-- ========== Scene 3 — Phase 1 · Collecte de données animée ========== -->
+                <section class="app-view app-view--p1" data-view="1">
+                  <div class="app-view__head">
+                    <div>
+                      <div class="app-view__kicker">Étape 1 · Semaine 1</div>
+                      <h4>Comment l'IA accélère votre cadrage ?</h4>
+                    </div>
+                    <span class="app-pill app-pill--live"><i></i> IA en ingestion</span>
+                  </div>
+
+                  <!-- Animated ingestion canvas -->
+                  <div class="ing-stage">
+                    <!-- Source: 4 key sources -->
+                    <div class="ing-source">
+                      <div class="ing-source__head">Sources client</div>
+                      <div class="ing-source__list">
+                        <span class="src-pill">PPAP</span>
+                        <span class="src-pill">FMEA</span>
+                        <span class="src-pill">8D · Audits</span>
+                        <span class="src-pill src-pill--db">Données process</span>
+                      </div>
+                    </div>
+
+                    <!-- Flying documents track -->
+                    <div class="ing-flow" id="ingFlow" aria-hidden="true"></div>
+
+                    <!-- Center: AI engine -->
+                    <div class="ing-engine">
+                      <div class="ing-engine__core">
+                        <div class="ing-engine__bars" aria-hidden="true">
+                          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                        </div>
+                        <div class="ing-engine__icon">
+                          <img src="assets/bp-logo.svg" alt="BearingPoint" class="ing-engine__logo-img" />
+                          <span class="ing-engine__lbl">AI Engine</span>
+                        </div>
+                      </div>
+                      <div class="ing-engine__meta">
+                        <span><b id="ingDocs">0</b> docs analysés</span>
+                      </div>
+                    </div>
+
+                    <!-- Output: 4 key extracted insights -->
+                    <div class="ing-output">
+                      <div class="ing-output__head">Insights extraits</div>
+                      <div class="ing-output__bag" id="ingOutput">
+                        <!-- chips injected by JS -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Single AI status bar -->
+                  <div class="ai-status-bar">
+                    <span class="ai-status-bar__tag">🤖 Conformity IATF</span>
+                    <span class="ai-status-bar__track"><i id="confGaugeFill"></i></span>
+                    <b class="ai-status-bar__val" id="confGaugeVal">0%</b>
+                    <span class="ai-status-bar__sep"></span>
+                    <span class="ai-status-bar__lbl">3 agents IA actifs</span>
+                  </div>
+
+                  <!-- Result tile (slides in at end of phase) -->
+                  <div class="phase-result phase-result--p1">
+                    <span class="phase-result__arrow">→</span>
+                    <span class="phase-result__text"><b>Guide d'entretien IATF prêt</b> · 32 entretiens planifiés · 248 docs analysés</span>
+                  </div>
+                </section>
+
+                <!-- ========== Scene 4 — Phase 2 · Classification verbatims + patterns ========== -->
+                <section class="app-view app-view--p2" data-view="2">
+                  <div class="app-view__head">
+                    <div>
+                      <div class="app-view__kicker">Étape 2 · Semaines 2 – 4</div>
+                      <h4>Comment l'IA capte la voix du terrain ?</h4>
+                    </div>
+                    <span class="app-pill app-pill--live"><i></i> NLP · Live</span>
+                  </div>
+
+                  <div class="cls-layout">
+                    <!-- Top: verbatim classification stage -->
+                    <div class="cls-stage">
+                      <div class="cls-pool">
+                        <div class="cls-pool__head">Verbatims bruts · 312</div>
+                        <div class="cls-pool__list" id="clsPool"></div>
+                      </div>
+                      <div class="cls-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 60 20"><g fill="#FF4D52"><circle cx="4" cy="10" r="2"/><circle cx="14" cy="10" r="2"/><circle cx="24" cy="10" r="2"/><circle cx="34" cy="10" r="2"/><circle cx="44" cy="10" r="2"/><circle cx="52" cy="6" r="2"/><circle cx="52" cy="14" r="2"/></g></svg>
+                        <span>Classification IA</span>
+                      </div>
+                      <div class="cls-buckets" id="clsBuckets">
+                        <div class="bucket" data-cat="Formation">
+                          <span class="bucket__name">Formation</span>
+                          <span class="bucket__count" data-count="0">0</span>
+                          <span class="bucket__bar"><i></i></span>
+                        </div>
+                        <div class="bucket" data-cat="Standards">
+                          <span class="bucket__name">Standards</span>
+                          <span class="bucket__count" data-count="0">0</span>
+                          <span class="bucket__bar"><i></i></span>
+                        </div>
+                        <div class="bucket" data-cat="Maintenance">
+                          <span class="bucket__name">Maintenance</span>
+                          <span class="bucket__count" data-count="0">0</span>
+                          <span class="bucket__bar"><i></i></span>
+                        </div>
+                        <div class="bucket" data-cat="Pilotage">
+                          <span class="bucket__name">Pilotage</span>
+                          <span class="bucket__count" data-count="0">0</span>
+                          <span class="bucket__bar"><i></i></span>
+                        </div>
+                      </div>
+                      <!-- Floating moving chips layer -->
+                      <div class="cls-fly" id="clsFly" aria-hidden="true"></div>
+                    </div>
+
+                    <!-- Bottom: causes racines détectées par l'IA (5-Why agrégé) -->
+                    <div class="cause-stage">
+                      <div class="cause-stage__head">
+                        <span><b>Causes racines</b> détectées par l'IA <span class="cause-stage__hint">· 5-Why agrégé sur 312 verbatims</span></span>
+                        <span class="cause-stage__legend"><i class="cs-dot cs-dot--crit"></i> Critique <i class="cs-dot cs-dot--warn"></i> Important</span>
+                      </div>
+                      <div class="cause-grid">
+                        <div class="cause-card cause-card--crit">
+                          <div class="cause-card__top">
+                            <span class="cause-card__tag">Formation</span>
+                            <span class="cause-card__pct">23%</span>
+                          </div>
+                          <div class="cause-card__title">Onboarding presse 4 sur le tas</div>
+                          <div class="cause-card__meta">14 verbatims · 5 incidents J‑7</div>
+                        </div>
+                        <div class="cause-card cause-card--crit">
+                          <div class="cause-card__top">
+                            <span class="cause-card__tag">Maintenance</span>
+                            <span class="cause-card__pct">19%</span>
+                          </div>
+                          <div class="cause-card__title">MTBF presse 4 — pièces en rupture</div>
+                          <div class="cause-card__meta">11 verbatims · arrêts récurrents</div>
+                        </div>
+                        <div class="cause-card cause-card--warn">
+                          <div class="cause-card__top">
+                            <span class="cause-card__tag">Standards</span>
+                            <span class="cause-card__pct">17%</span>
+                          </div>
+                          <div class="cause-card__title">SOP &amp; OPL absents en ligne</div>
+                          <div class="cause-card__meta">9 verbatims · 3 postes concernés</div>
+                        </div>
+                        <div class="cause-card cause-card--warn">
+                          <div class="cause-card__top">
+                            <span class="cause-card__tag">Pilotage</span>
+                            <span class="cause-card__pct">14%</span>
+                          </div>
+                          <div class="cause-card__title">AIC matin non tenu — pas de live perf</div>
+                          <div class="cause-card__meta">8 verbatims · indicateur J+7</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Result tile -->
+                  <div class="phase-result phase-result--p2">
+                    <span class="phase-result__arrow">→</span>
+                    <span class="phase-result__text"><b>109 causes racines identifiées</b> · 312 verbatims classifiés · 6 patterns détectés</span>
+                  </div>
+                </section>
+
+                <!-- ========== Scene 5 — Phase 3 · Plan d'actions priorisé qui se construit ========== -->
+                <section class="app-view app-view--p3" data-view="3">
+                  <div class="app-view__head">
+                    <div>
+                      <div class="app-view__kicker">Étape 3 · Semaine 5</div>
+                      <h4>Quel plan d'actions chiffré ?</h4>
+                    </div>
+                    <span class="app-pill app-pill--live"><i></i> IA priorise &amp; séquence</span>
+                  </div>
+
+                  <div class="plan-layout">
+                    <!-- Left: pool of actions identified -->
+                    <div class="plan-pool">
+                      <div class="plan-pool__head">Actions identifiées · 150</div>
+                      <div class="plan-pool__stack" id="planStack">
+                        <!-- Cards injected/displayed by JS - kept ordered as data array -->
+                      </div>
+                    </div>
+
+                    <!-- Center: ICE matrix being populated -->
+                    <div class="plan-matrix">
+                      <div class="plan-matrix__head">Matrice ICE · placement IA</div>
+                      <div class="plan-ice" id="planIce">
+                        <div class="plan-ice__y">Impact ↑</div>
+                        <div class="plan-ice__x">Faisabilité →</div>
+                        <div class="plan-ice__qtr">★ Quick wins</div>
+                        <!-- 7 priority cards placed by JS -->
+                      </div>
+                    </div>
+
+                    <!-- Right: business case + AI impact simulation -->
+                    <div class="plan-bc">
+                      <div class="plan-bc__head">🤖 Business case auto-généré</div>
+                      <div class="plan-bc__rows">
+                        <div class="bc-row">
+                          <span>Gain TRS · 18 mois</span>
+                          <b class="bc-num" data-tgt="14" data-pfx="+" data-suf=" pts">+0 pts</b>
+                        </div>
+                        <div class="bc-row">
+                          <span>Causes racines</span>
+                          <b class="bc-num" data-tgt="109">0</b>
+                        </div>
+                        <div class="bc-row">
+                          <span>Actions priorisées</span>
+                          <b class="bc-num" data-tgt="152">0</b>
+                        </div>
+                        <div class="bc-row bc-row--hl">
+                          <span>Productivité / an · 5 ans</span>
+                          <b class="bc-num" data-tgt="5" data-pfx="+3 à +" data-suf=" %">+0%</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Single AI status bar (timeline summary) -->
+                  <div class="ai-status-bar">
+                    <span class="ai-status-bar__tag">🤖 Roadmap</span>
+                    <div class="rm-mini" id="planRmCards">
+                      <span class="rm-mini__line"></span>
+                      <span class="rm-mini__ms" style="left:0%">M0</span>
+                      <span class="rm-mini__ms" style="left:33%">M6</span>
+                      <span class="rm-mini__ms" style="left:66%">M12</span>
+                      <span class="rm-mini__ms" style="left:100%">M18</span>
+                    </div>
+                  </div>
+
+                  <!-- Result tile -->
+                  <div class="phase-result phase-result--p3">
+                    <span class="phase-result__arrow">→</span>
+                    <span class="phase-result__text"><b>+14 pts TRS projetés · 18 mois</b> · 152 actions priorisées · Business case chiffré</span>
+                  </div>
+                </section>
+                </div>
+              </main>
+            </div>
+          </div>
+          <!-- ========== /APP MOCKUP ========== -->
+
+          <!-- ========== Scene 6 — Bénéfices résumé ========== -->
+          <div class="scene scene-6" data-scene="6">
+            <div class="benef-head">Ce que la démarche change</div>
+            <div class="benef-grid">
+              <div class="benef-card">
+                <span class="benef-num">×3</span>
+                <b>Profondeur d'analyse</b>
+                <p>L'IA traite l'intégralité des verbatims &amp; données process, là où la démarche classique échantillonne.</p>
+              </div>
+              <div class="benef-card">
+                <span class="benef-num">−40%</span>
+                <b>Time-to-recommandation</b>
+                <p><strong>5 semaines</strong> avec l'IA vs 8 en démarche classique. Quick wins activés dès la semaine 2.</p>
+              </div>
+              <div class="benef-card">
+                <span class="benef-num">+15<small>pts</small></span>
+                <b>TRS gagnés</b>
+                <p>Sur lignes pilotes, alignés avec la trajectoire prévue à la fin du diagnostic.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== Scene 7 — Outro ========== -->
+          <div class="scene scene-7" data-scene="7">
+            <div class="outro-card">
+              <img src="assets/bp-logo.svg" alt="BearingPoint" class="outro-card__logo-img" />
+              <h3 class="outro-card__title">Activons la productivité <span class="text-red">en 5 semaines.</span></h3>
+              <div class="outro-card__cta">Prendre RDV →</div>
+            </div>
+          </div>
+
+          <!-- Soft cross-fade only -->
+          <div class="scene-fade" id="sceneWipe" aria-hidden="true"></div>
+
+          <!-- Player overlay (play) -->
+          <div class="player__overlay" id="playerOverlay">
+            <button class="player__playbtn" id="playBtn" aria-label="Lancer la démo">
+              <svg viewBox="0 0 80 80" aria-hidden="true">
+                <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.4)" stroke="#fff" stroke-width="2"/>
+                <polygon points="32,26 32,54 56,40" fill="#fff"/>
+              </svg>
+              <span>Lancer la démo · 60 s</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="player__bar">
+          <button class="player__ctrl" id="ctrlPlay" aria-label="Lecture / Pause">▶</button>
+          <div class="player__progress" id="progress">
+            <div class="player__progress-bar" id="progressBar"></div>
+            <div class="player__chapters">
+              <span data-jump="1"></span>
+              <span data-jump="2"></span>
+              <span data-jump="3"></span>
+              <span data-jump="4"></span>
+              <span data-jump="5"></span>
+              <span data-jump="6"></span>
+              <span data-jump="7"></span>
+            </div>
+          </div>
+          <div class="player__time"><span id="curTime">0:00</span> / <span id="totTime">1:00</span></div>
+          <button class="player__ctrl" id="ctrlMute" aria-label="Couper le son" title="Couper le son">🔊</button>
+          <button class="player__ctrl" id="ctrlReplay" aria-label="Revoir">↺</button>
+        </div>
+
+        <div class="player__chapter-labels">
+          <span>Intro</span><span>Contexte</span><span>Étape 1</span><span>Étape 2</span><span>Étape 3</span><span>Bénéfices</span><span>Contact</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== DÉMARCHE ============== -->
+  <section class="section section--demarche" id="demarche">
+    <div class="container">
+      <div class="section__head">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Notre démarche</div>
+        <h2 class="section__title">3 phases. 5 semaines. <span class="text-red">Augmentées par l'IA.</span></h2>
+        <p class="section__lede">Une démarche structurée, collaborative dès la semaine 1, qui aligne managers et opérateurs autour d'un plan d'actions priorisé et chiffré.</p>
+      </div>
+
+      <!-- Phase tabs -->
+      <div class="phases">
+        <div class="phases__tabs" role="tablist">
+          <button class="phase-tab is-active" data-phase="1" role="tab" aria-selected="true">
+            <span class="phase-tab__num">01</span>
+            <span class="phase-tab__label">Cadrage &amp; Investigation</span>
+            <span class="phase-tab__week">Sem. 1</span>
+          </button>
+          <button class="phase-tab" data-phase="2" role="tab">
+            <span class="phase-tab__num">02</span>
+            <span class="phase-tab__label">Causes racines &amp; Recommandations</span>
+            <span class="phase-tab__week">Sem. 2–4</span>
+          </button>
+          <button class="phase-tab" data-phase="3" role="tab">
+            <span class="phase-tab__num">03</span>
+            <span class="phase-tab__label">Synthèse &amp; Business Case</span>
+            <span class="phase-tab__week">Sem. 5</span>
+          </button>
+        </div>
+
+        <div class="phase-panels">
+          <!-- PHASE 1 -->
+          <article class="phase-panel is-active" data-phase="1">
+            <div class="phase-panel__main">
+              <div class="phase-panel__badge">Phase 01</div>
+              <h3>Cadrage &amp; Investigation</h3>
+              <p class="phase-panel__lede">Guide d'entretien customisé IATF 16949 / APQP, planification, collecte des données process et entretiens des fonctions clés.</p>
+              <ul class="phase-list">
+                <li>Collecte des données process : <strong>TRS, BPC, lead time, NCR, MTBF</strong></li>
+                <li>Entretiens production, qualité, supply, maintenance</li>
+                <li>Cadrage du périmètre, lignes pilotes identifiées</li>
+              </ul>
+              <div class="phase-ia">
+                <span class="phase-ia__tag">IA</span>
+                <p>Personnalisation du guide d'entretien sectoriel + <strong>pré-analyse RAG</strong> des documents PPAP, FMEA, audits qualité.</p>
+              </div>
+            </div>
+            <div class="phase-panel__viz">
+              <div class="viz-card viz-card--scan">
+                <div class="viz-card__head">RAG · Documents qualité</div>
+                <div class="scan-doc">
+                  <div class="scan-doc__line"></div>
+                  <div class="scan-doc__line"></div>
+                  <div class="scan-doc__line short"></div>
+                  <div class="scan-doc__line"></div>
+                  <div class="scan-doc__line short"></div>
+                  <div class="scan-doc__beam"></div>
+                </div>
+                <div class="scan-meta">
+                  <span><b>248</b> docs ingérés</span>
+                  <span><b>1 720</b> chunks indexés</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PHASE 2 -->
+          <article class="phase-panel" data-phase="2">
+            <div class="phase-panel__main">
+              <div class="phase-panel__badge">Phase 02</div>
+              <h3>Identification des causes racines &amp; Recommandations</h3>
+              <p class="phase-panel__lede">Observations Gemba sur lignes pilotes, VSM des flux, ateliers thématiques. Quick-wins activés dès la S2.</p>
+              <ul class="phase-list">
+                <li><strong>Gemba</strong> sur lignes pilotes, VSM physique &amp; informationnel</li>
+                <li>Ateliers thématiques : organisation, R&amp;R, pilotage, planification, stocks, savoir-faire, outils</li>
+                <li>Rapport d'étonnement &amp; partage du diagnostic</li>
+              </ul>
+              <div class="phase-ia">
+                <span class="phase-ia__tag">IA</span>
+                <p><strong>Clustering NLP</strong> des verbatims, détection de patterns sur données process, analyse causes racines (5-Why assisté, corrélations).</p>
+              </div>
+            </div>
+            <div class="phase-panel__viz">
+              <div class="viz-card viz-card--clusters">
+                <div class="viz-card__head">NLP · Verbatims terrain</div>
+                <div class="clusters">
+                  <span class="cluster c1">Formation<br><b>23</b></span>
+                  <span class="cluster c2">Maintenance<br><b>17</b></span>
+                  <span class="cluster c3">Stocks<br><b>14</b></span>
+                  <span class="cluster c4">Standards<br><b>21</b></span>
+                  <span class="cluster c5">Pilotage<br><b>11</b></span>
+                  <span class="cluster c6">Outils<br><b>9</b></span>
+                </div>
+                <div class="scan-meta">
+                  <span><b>312</b> verbatims</span>
+                  <span><b>6</b> clusters auto-détectés</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PHASE 3 -->
+          <article class="phase-panel" data-phase="3">
+            <div class="phase-panel__main">
+              <div class="phase-panel__badge">Phase 03</div>
+              <h3>Synthèse &amp; Business Case</h3>
+              <p class="phase-panel__lede">Priorisation matrice ICE, feuille de route 6–18 mois, business case par levier, gouvernance et tableau de bord.</p>
+              <ul class="phase-list">
+                <li>Matrice <strong>ICE</strong> (Impact / Confiance / Faisabilité)</li>
+                <li>Feuille de route <strong>6–18 mois</strong> avec jalons</li>
+                <li>Business case par levier + modèle de suivi</li>
+              </ul>
+              <div class="phase-ia">
+                <span class="phase-ia__tag">IA</span>
+                <p>Priorisation alimentée par l'historique projets BearingPoint, <strong>business case auto-généré</strong> par levier, simulation d'impact des solutions.</p>
+              </div>
+            </div>
+            <div class="phase-panel__viz">
+              <div class="viz-card viz-card--ice">
+                <div class="viz-card__head">Matrice ICE · Priorisation</div>
+                <div class="ice">
+                  <div class="ice__axis ice__axis--y">Impact →</div>
+                  <div class="ice__axis ice__axis--x">Faisabilité →</div>
+                  <div class="ice__grid">
+                    <span class="dot-action a1" title="Standards opératoires">A</span>
+                    <span class="dot-action a2" title="5S lignes pilotes">B</span>
+                    <span class="dot-action a3" title="Mgt visuel">C</span>
+                    <span class="dot-action a4" title="SMED">D</span>
+                    <span class="dot-action a5" title="TPM">E</span>
+                    <span class="dot-action a6" title="S&amp;OP">F</span>
+                    <span class="dot-action a7" title="MES">G</span>
+                  </div>
+                </div>
+                <div class="scan-meta">
+                  <span><b>150</b> actions priorisées</span>
+                  <span><b>18</b> mois de roadmap</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- 12 thématiques -->
+      <div class="themes">
+        <div class="themes__head">
+          <h3>12 thématiques d'irritants &amp; besoins investigués</h3>
+          <p>Grille standard couvrant management, méthodologie, outils et résolution de problème. <strong>Personnalisable</strong> selon les enjeux du site et les priorités métier du client.</p>
+        </div>
+        <div class="themes__grid">
+          <div class="theme" data-icon="🏢"><span class="theme__icon" aria-hidden="true">🏢</span><span class="theme__label">Organisation interne &amp; Management</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">👥</span><span class="theme__label">Rôles &amp; Responsabilités</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">💬</span><span class="theme__label">Communication interne</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">🗂️</span><span class="theme__label">Pilotage de projet</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">📈</span><span class="theme__label">Pilotage de la performance</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">📅</span><span class="theme__label">Prévisions &amp; Planification</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">📦</span><span class="theme__label">Gestion des stocks &amp; achats</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">🔎</span><span class="theme__label">Résolution de problème</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">📄</span><span class="theme__label">Gestion documentaire</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">🧠</span><span class="theme__label">Gestion du savoir-faire</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">⭐</span><span class="theme__label">Reconnaissance &amp; Perspectives</span></div>
+          <div class="theme"><span class="theme__icon" aria-hidden="true">🛠️</span><span class="theme__label">Outils &amp; Méthodologie</span></div>
+        </div>
+        <div class="themes__note">
+          <span class="themes__note-tag">Standard</span>
+          <p>Ces 12 thématiques constituent la grille socle de la démarche Flash Diag. Elle est <strong>amendable au cadrage</strong> pour intégrer les irritants spécifiques au site (énergie, sécurité, montée en cadence EV, etc.).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ACCÉLÉRATEURS IA ============== -->
+  <section class="section section--accel" id="accelerateurs">
+    <div class="container">
+      <div class="section__head section__head--center">
+        <div class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span>Nos accélérateurs</div>
+        <h2 class="section__title section__title--inv">Trois leviers d'IA, intégrés à la démarche.</h2>
+      </div>
+
+      <div class="accel-grid">
+        <div class="accel-card">
+          <div class="accel-card__num" data-count="3" data-prefix="×">×3</div>
+          <h3>Profondeur d'analyse</h3>
+          <p>Exploitation exhaustive des verbatims &amp; données process — là où la démarche classique échantillonne, l'IA traite l'intégralité.</p>
+        </div>
+        <div class="accel-card">
+          <div class="accel-card__num" data-count="40" data-prefix="−" data-suffix="%">−40 %</div>
+          <h3>Time-to-recommandation</h3>
+          <p><strong>5 semaines</strong> avec l'IA <span class="strike">vs 8 semaines</span> en démarche classique. Quick-wins activés dès la semaine 2.</p>
+        </div>
+        <div class="accel-card">
+          <div class="accel-card__num" data-count="100" data-suffix="%">100 %</div>
+          <h3>Rigueur sectorielle</h3>
+          <p>Grilles <strong>IATF 16949 / APQP / 8D</strong> intégrées dans l'analyse via des agents IA dédiés.</p>
+        </div>
+      </div>
+
+      <div class="ia-stack">
+        <span class="ia-stack__lbl">Stack IA :</span>
+        <span class="ia-pill">NLP</span>
+        <span class="ia-pill">RAG</span>
+        <span class="ia-pill">LLM</span>
+        <span class="ia-pill">Agents IA sectoriels</span>
+        <span class="ia-pill">Google Cloud</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== RÉSULTATS ============== -->
+  <section class="section section--alt" id="resultats">
+    <div class="container">
+      <div class="section__head">
+        <div class="eyebrow eyebrow--dark"><span class="eyebrow__dot"></span>Résultats pour nos clients</div>
+        <h2 class="section__title">Ce que nos clients en font.</h2>
+      </div>
+
+      <div class="results-grid">
+        <div class="result">
+          <div class="result__num" data-count="15" data-prefix="+">+15</div>
+          <div class="result__unit">pts de TRS</div>
+          <p>Gagnés sur lignes pilotes (10 à 15 pts), alignés avec la trajectoire prévue à la fin du diagnostic.</p>
+        </div>
+        <div class="result">
+          <div class="result__num" data-count="150" data-prefix="+">+150</div>
+          <div class="result__unit">actions priorisées</div>
+          <p>100+ causes racines identifiées et 150+ actions priorisées à horizon 18 mois.</p>
+        </div>
+        <div class="result">
+          <div class="result__num" data-count="5" data-prefix="+" data-suffix=" %">+3–5 %</div>
+          <div class="result__unit">productivité / an</div>
+          <p>Trajectoire de gain de productivité sur 5 ans, durable et mesurable.</p>
+        </div>
+        <div class="result">
+          <div class="result__num" data-count="40" data-prefix="+" data-suffix=" %">+40 %</div>
+          <div class="result__unit">montée en cadence</div>
+          <p>Montée en cadence en 6 mois (ex. 32 → 45 unités/mois) déclenchée par le diagnostic.</p>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-card__mark">"</div>
+        <blockquote>
+          Diagnostic complet avec identification de <strong>109 causes racines</strong>, construction d'un plan d'actions ambitieux de <strong>152 actions</strong> permettant un gain projeté de <strong>+14 pts de TRS</strong> en moyenne sur 18 mois. Mise en place d'une trajectoire claire, d'un modèle de suivi, et d'un engagement fort des équipes.
+        </blockquote>
+        <div class="quote-card__src">Référence client · Industrie · 18 mois</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============== REFERENCES ============== -->
+  <section class="section" id="references">
+    <div class="container">
+      <div class="section__head">
+        <div class="eyebrow eyebrow--dark"><span class="eyebrow__dot"></span>Nos références</div>
+        <h2 class="section__title">Une démarche éprouvée chez les industriels.</h2>
+      </div>
+      <div class="refs">
+        <div class="ref-card">
+          <div class="ref-card__sector">Câbles &amp; énergie</div>
+          <h4>Site industriel</h4>
+          <p>Livrables Diag 360 : guide d'entretien, support d'ateliers RSP, plan d'action priorisé.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card__sector">Agroalimentaire</div>
+          <h4>Site de production</h4>
+          <p>109 causes racines identifiées · 152 actions priorisées sur 18 mois.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card__sector">Mobilité</div>
+          <h4>Site d'assemblage</h4>
+          <p>83 actions chiffrées · montée en cadence 32 → 45 unités/mois en 6 mois.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card__sector">Agro · Fromages</div>
+          <h4>Groupe industriel</h4>
+          <p>+2,7 % productivité/an sur 5 ans · 5,2 M€ de gains liés aux Organisations Autonomes.</p>
+        </div>
+      </div>
+
+      <div class="partners">
+        <span class="partners__lbl">Écosystème partenaires :</span>
+        <span class="partner">Google Cloud</span>
+        <span class="partner">ServiceNow</span>
+        <span class="partner">Anaplan</span>
+        <span class="partner">Poka</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA ============== -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta__inner">
+        <div>
+          <h2>Pitchez votre site industriel <span class="text-red">en 30 minutes.</span></h2>
+          <p>Échangeons sur vos enjeux TRS, qualité OEM et trajectoire d'électrification. Repartez avec un cadrage personnalisé.</p>
+        </div>
+        <div class="cta__actions">
+          <a href="mailto:eugene.couybes@bearingpoint.com?subject=Flash%20Diag%20360%20-%20Demande%20RDV" class="btn btn--primary btn--lg">Prendre RDV →</a>
+          <a href="#demo" class="btn btn--ghost btn--lg">Revoir la démo</a>
+        </div>
+      </div>
+      <div class="cta__leads">
+        <a href="mailto:eugene.couybes@bearingpoint.com?subject=Flash%20Diag%20360%20-%20Demande%20RDV" class="lead-card">
+          <div class="lead-card__avatar">EC</div>
+          <div class="lead-card__body">
+            <strong>Eugène Couybes</strong>
+            <span class="lead-card__role">Manager Excellence Opérationnelle</span>
+            <span class="lead-card__mail">eugene.couybes@bearingpoint.com</span>
+          </div>
+        </a>
+        <a href="mailto:erwan.verger@bearingpoint.com?subject=Flash%20Diag%20360%20-%20Demande%20RDV" class="lead-card">
+          <div class="lead-card__avatar">EV</div>
+          <div class="lead-card__body">
+            <strong>Erwan Verger</strong>
+            <span class="lead-card__role">Manager Automobile</span>
+            <span class="lead-card__mail">erwan.verger@bearingpoint.com</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/bp-logo.svg" alt="BearingPoint" class="footer__logo-img" />
+        <p>Management &amp; Technology Consulting · Excellence Opérationnelle · Équipementiers automobile</p>
+      </div>
+      <div class="footer__legal">
+        <p>© 2026 BearingPoint · Flash Diag 360° — Offre Équipementiers automobile</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
