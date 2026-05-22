@@ -48,8 +48,8 @@
         </div>
         <div class="hero__proof">
           <div class="proof"><strong>+10 à 15 pts</strong><span>TRS gagnés</span></div>
-          <div class="proof"><strong>−40 %</strong><span>Time-to-reco</span></div>
-          <div class="proof"><strong>×3</strong><span>Profondeur d'analyse</span></div>
+          <div class="proof"><strong>+3 à 5 %</strong><span>Productivité / an sur 5 ans</span></div>
+          <div class="proof"><strong>+40 %</strong><span>Montée en cadence en 6 mois</span></div>
         </div>
       </div>
 
@@ -224,12 +224,40 @@
           <div class="scene scene-2" data-scene="2">
             <div class="ctx-vid-wrap">
               <div class="ctx-card-vid">
-                <div class="ctx-card-vid__head">Pourquoi maintenant ?</div>
+                <div class="ctx-card-vid__head"><span class="ctx-card-vid__dot"></span>Pourquoi maintenant ?</div>
                 <div class="ctx-stat-row">
-                  <div class="ctx-stat"><b>−31%</b><span>Volume thermique<br>2025 vs 2019</span></div>
-                  <div class="ctx-stat"><b>+25%</b><span>Droits de douane<br>USA</span></div>
-                  <div class="ctx-stat"><b>≈40%</b><span>Équipementiers<br>en perte</span></div>
-                  <div class="ctx-stat"><b>1 200</b><span>Sites industriels<br>en France</span></div>
+                  <div class="ctx-stat ctx-stat--down">
+                    <div class="ctx-stat__top">
+                      <span class="ctx-stat__tag">Thermique</span>
+                      <svg class="ctx-stat__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8 L12 15 L19 8" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <b>−31<span class="ctx-stat__unit">%</span></b>
+                    <span class="ctx-stat__lbl">Volume 2025 vs 2019</span>
+                  </div>
+                  <div class="ctx-stat ctx-stat--up">
+                    <div class="ctx-stat__top">
+                      <span class="ctx-stat__tag">Douanes USA</span>
+                      <svg class="ctx-stat__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16 L12 9 L19 16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <b>+25<span class="ctx-stat__unit">%</span></b>
+                    <span class="ctx-stat__lbl">Droits de douane</span>
+                  </div>
+                  <div class="ctx-stat ctx-stat--alert">
+                    <div class="ctx-stat__top">
+                      <span class="ctx-stat__tag">Rentabilité</span>
+                      <svg class="ctx-stat__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M12 7 V13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.2" fill="currentColor"/></svg>
+                    </div>
+                    <b>≈40<span class="ctx-stat__unit">%</span></b>
+                    <span class="ctx-stat__lbl">Équipementiers en perte</span>
+                  </div>
+                  <div class="ctx-stat ctx-stat--neutral">
+                    <div class="ctx-stat__top">
+                      <span class="ctx-stat__tag">France</span>
+                      <svg class="ctx-stat__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 V11 L10 8 V11 L20 8 V20 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M8 20 V15 M12 20 V15 M16 20 V15" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <b>1<span class="ctx-stat__sep"> </span>200</b>
+                    <span class="ctx-stat__lbl">Sites industriels</span>
+                  </div>
                 </div>
                 <div class="ctx-card-vid__verdict">
                   <span class="verdict-pill">→ Améliorer la productivité <strong>à minima de CAPEX</strong></span>
@@ -569,7 +597,7 @@
             <div class="outro-card">
               <img src="assets/bp-logo.svg" alt="BearingPoint" class="outro-card__logo-img" />
               <h3 class="outro-card__title">Activons la productivité <span class="text-red">en 5 semaines.</span></h3>
-              <div class="outro-card__cta">Prendre RDV →</div>
+              <a class="outro-card__cta" href="#contact">Prendre RDV →</a>
             </div>
           </div>
 
@@ -670,6 +698,19 @@
                   <div class="scan-doc__line"></div>
                   <div class="scan-doc__line short"></div>
                   <div class="scan-doc__beam"></div>
+                </div>
+                <!-- Livrable produit par l'analyse — apparaît une fois le scan terminé -->
+                <div class="scan-deliv" aria-hidden="true">
+                  <div class="scan-deliv__head">
+                    <span class="scan-deliv__tag">📄 Livrable client</span>
+                    <span class="scan-deliv__stamp">✓ Prêt</span>
+                  </div>
+                  <div class="scan-deliv__title">Pré-analyse &amp; cadrage du diagnostic</div>
+                  <ul class="scan-deliv__items">
+                    <li><span class="scan-deliv__bullet"></span>Pré-analyse PPAP/FMEA · <b>14 modes critiques</b> détectés</li>
+                    <li><span class="scan-deliv__bullet"></span>Cartographie des dérives qualité &amp; NCR récurrents</li>
+                    <li><span class="scan-deliv__bullet"></span>Guide d'entretien IATF 16949 · <b>32 entretiens</b> planifiés</li>
+                  </ul>
                 </div>
                 <div class="scan-meta">
                   <span><b>248</b> docs ingérés</span>

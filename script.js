@@ -68,9 +68,35 @@ phaseTabs.forEach(tab => {
     const phase = tab.dataset.phase;
     phaseTabs.forEach(t => t.classList.toggle('is-active', t === tab));
     phasePanels.forEach(p => p.classList.toggle('is-active', p.dataset.phase === phase));
+    if (phase === '1') setTimeout(runPhase1ScanAnim, 120);
   });
 });
 // Phase 1 stays selected by default; the user controls switches via clicks.
+
+/* Phase 1 démarche viz: scan finite + livrable révélé une fois l'analyse terminée */
+const phase1ScanCard = document.querySelector('.phase-panel[data-phase="1"] .viz-card--scan');
+function runPhase1ScanAnim() {
+  if (!phase1ScanCard) return;
+  phase1ScanCard.classList.remove('is-running', 'is-done');
+  // Force reflow pour relancer proprement l'animation CSS
+  void phase1ScanCard.offsetWidth;
+  phase1ScanCard.classList.add('is-running');
+  // 3 passages × 1.1s = 3.3s, on révèle le livrable juste après
+  setTimeout(() => phase1ScanCard.classList.add('is-done'), 3400);
+}
+// Premier déclenchement quand la section démarche entre dans le viewport
+const demarcheSection = document.getElementById('demarche');
+if (demarcheSection && phase1ScanCard) {
+  const demarcheIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runPhase1ScanAnim();
+        demarcheIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  demarcheIO.observe(demarcheSection);
+}
 
 /* ---------- 5. Smooth scroll ---------- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
