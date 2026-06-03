@@ -556,7 +556,7 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 .phases { margin-bottom: 80px; }
 .phases__tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   margin-bottom: 36px;
   border-radius: var(--radius);
@@ -1089,6 +1089,10 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   color: var(--bp-red);
   letter-spacing: -0.04em;
   margin-bottom: 20px;
+}
+.accel-card__num--icon {
+  font-size: 52px;
+  line-height: 1.2;
 }
 .accel-card h3 {
   font-family: var(--font-display);
@@ -2512,9 +2516,9 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 }
 .benef-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 900px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  max-width: 980px;
   margin: 0 auto;
 }
 .benef-card {
@@ -2530,10 +2534,11 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 .scene-6.is-active .benef-card:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: .2s; }
 .scene-6.is-active .benef-card:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: .45s; }
 .scene-6.is-active .benef-card:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: .7s; }
+.scene-6.is-active .benef-card:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: .95s; }
 .benef-num {
   display: block;
   font-family: var(--font-display);
-  font-size: 56px;
+  font-size: 42px;
   font-weight: 700;
   color: var(--bp-red);
   letter-spacing: -0.04em;
@@ -3160,6 +3165,7 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   border-radius: 4px;
   overflow: hidden;
 }
+/* (legacy — ancien design scene-5, markup retiré) */
 .rm-seg {
   flex: 0;
   background: var(--bp-red);
@@ -3821,16 +3827,19 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 }
 .phase-result__text b { font-weight: 800; }
 
-/* Show result at right moment per phase */
-.app-view--p1.is-active .phase-result--p1 { opacity: 1; transform: translateY(0); transition-delay: 10.5s; }
-.app-view--p2.is-active .phase-result--p2 { opacity: 1; transform: translateY(0); transition-delay: 12s; }
-.app-view--p3.is-active .phase-result--p3 { opacity: 1; transform: translateY(0); transition-delay: 11.5s; }
+/* Show result at right moment per phase (fenêtres : 14s / 14s / 14s) */
+.app-view--p1.is-active .phase-result--p1 { opacity: 1; transform: translateY(0); transition-delay: 11.5s; }
+.app-view--p2.is-active .phase-result--p2 { opacity: 1; transform: translateY(0); transition-delay: 12.3s; }
+.app-view--p3.is-active .phase-result--p3 { opacity: 1; transform: translateY(0); transition-delay: 12.5s; }
 
 /* ====== PHASE 1 · INGESTION ====== */
 .ing-stage {
   flex: 1;
   display: grid;
   grid-template-columns: 170px 1fr 200px;
+  /* une seule rangée bornée : les chips qui cascadent ne font plus grandir
+     la grille (sinon l'AI Engine, centré verticalement, descendait en fin de phase) */
+  grid-template-rows: minmax(0, 1fr);
   gap: 14px;
   align-items: stretch;
   position: relative;
@@ -3843,6 +3852,8 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   border-radius: 6px;
   padding: 12px;
   height: 100%;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -4104,51 +4115,74 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   white-space: nowrap;
 }
 
-/* mini roadmap (Phase 3) inside the status bar */
-.rm-mini {
-  position: relative;
+/* roadmap 6-12-18 mois (Phase 3) inside the status bar */
+.rm-road {
   flex: 1;
-  height: 22px;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  min-width: 0;
 }
-.rm-mini__line {
-  position: absolute;
-  left: 0; right: 0; top: 50%;
-  transform: translateY(-50%);
-  height: 2px;
-  background: linear-gradient(90deg, var(--bp-red), #7C2027);
-  border-radius: 2px;
+.rm-road__arrow {
+  align-self: center;
+  color: var(--bp-red);
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
 }
-.rm-mini__ms {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  border: 1.5px solid var(--bp-red);
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
+.road-seg {
+  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid rgba(255,77,82,.2);
+  border-radius: 8px;
+  padding: 4px 10px;
+  min-height: 32px;
+  min-width: 0;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.road-seg.is-flash {
+  border-color: var(--bp-red);
+  box-shadow: 0 0 0 3px rgba(255,77,82,.18);
+}
+.road-seg__lbl {
   font-family: var(--font-display);
-  font-size: 8.5px;
+  font-size: 11.5px;
   font-weight: 700;
-  color: var(--bp-red);
-  z-index: 2;
+  color: var(--bp-black);
+  white-space: nowrap;
 }
-.rm-mini__action {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 10px;
-  height: 10px;
-  background: var(--bp-red);
+.road-seg__tag {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--bp-grey-500);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.road-seg__dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.road-seg__dot {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  z-index: 1;
-  box-shadow: 0 0 0 3px rgba(255,77,82,.25);
-  transition: transform .4s cubic-bezier(.2,.7,.2,1);
+  background: var(--bp-red);
+  box-shadow: 0 0 0 2px rgba(255,77,82,.2);
+  transform: scale(0);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  flex-shrink: 0;
 }
-.rm-mini__action.is-visible { transform: translate(-50%, -50%) scale(1); }
+.road-seg__dot.is-visible { transform: scale(1); }
+.road-seg__dot.is-quickwin {
+  background: #FFB000;
+  box-shadow: 0 0 0 2px rgba(255,176,0,.25);
+}
 .lever {
   background: #fff;
   border: 1px solid rgba(255,77,82,.2);

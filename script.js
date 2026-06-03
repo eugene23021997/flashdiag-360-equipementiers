@@ -441,15 +441,15 @@ const music = new AmbientMusic();
    DEMO VIDEO PLAYER · EXPLANATORY VERSION
    ===================================================== */
 
-// 7 scenes — 60 s total, with breathing room
+// 7 scenes — 60 s total
 const SCENES = [
   { id: 1, start: 0,  end: 4  },   // Intro (4s)
   { id: 2, start: 4,  end: 9  },   // Context (5s)
-  { id: 3, start: 9,  end: 22 },   // Phase 1 — Ingestion + Conformity (13s)
-  { id: 4, start: 22, end: 36 },   // Phase 2 — Classification (non-sequential) + Pattern (14s)
-  { id: 5, start: 36, end: 50 },   // Phase 3 — Plan d'actions + Simulation (14s)
-  { id: 6, start: 50, end: 55 },   // Benefits (5s)
-  { id: 7, start: 55, end: 60 }    // Outro (5s)
+  { id: 3, start: 9,  end: 23 },   // Phase 1 — Ingestion + Conformity (14s)
+  { id: 4, start: 23, end: 37 },   // Phase 2 — Classification (non-sequential) + Pattern (14s)
+  { id: 5, start: 37, end: 51 },   // Phase 3 — Plan d'actions + Roadmap 6-12-18 (14s)
+  { id: 6, start: 51, end: 56 },   // Résultats chez nos clients (5s)
+  { id: 7, start: 56, end: 60 }    // Outro (4s)
 ];
 const TOTAL = 60;
 
@@ -715,10 +715,10 @@ function runPhase1Ingestion() {
   }
   if (gaugeVal) gaugeVal.textContent = '0%';
 
-  // Phase 1 window: 13s.
-  // - 0–8s: 4 docs fly to engine (1.6s pace - more breathing), each emits 1 chip, counter ticks up
-  // - 0–8s: Conformity IATF gauge progressively fills from 0% → 84%
-  // - 9–12s: AI levers panel highlights (CSS-driven)
+  // Phase 1 window: 15s.
+  // - 0–9.5s: 4 docs fly to engine (1.9s pace - more breathing), each emits 1 chip, counter ticks up
+  // - 0–11s: Conformity IATF gauge progressively fills from 0% → 84%
+  // - 11–14s: AI levers panel highlights (CSS-driven)
   const stageRect = stage.getBoundingClientRect();
   const targetX = stageRect.width * 0.42;
   const docs = ING_DOCS;
@@ -747,30 +747,30 @@ function runPhase1Ingestion() {
         }
       }, 950);
       p1Timers.push(chipDelay);
-    }, 400 + i * 1500);
+    }, 500 + i * 1900);
     p1Timers.push(t);
   });
 
   // After the first 3-4 detailed chips, cascade more chips quickly to suggest depth
-  const cascadeStart = 400 + ING_DOCS.length * 1500 + 600;
+  const cascadeStart = 500 + ING_DOCS.length * 1900 + 700;
   ING_OUT_CHIPS.slice(ING_DOCS.length).forEach((chipText, i) => {
     p1Timers.push(setTimeout(() => {
       const c = document.createElement('span');
       c.className = 'out-chip out-chip--cascade';
       c.textContent = chipText;
       out.appendChild(c);
-    }, cascadeStart + i * 280));
+    }, cascadeStart + i * 360));
   });
 
   // Counter
-  p1Timers.push(setTimeout(() => animNum(docsEl, 248, 7000), 600));
+  p1Timers.push(setTimeout(() => animNum(docsEl, 248, 9500), 600));
 
-  // Conformity gauge — fills from 0 → 84% over 8s
+  // Conformity gauge — fills from 0 → 84% over 10.5s
   if (gaugeFill && gaugeVal) {
     p1Timers.push(setTimeout(() => {
-      gaugeFill.style.transition = 'width 8s cubic-bezier(.2,.7,.2,1)';
+      gaugeFill.style.transition = 'width 10.5s cubic-bezier(.2,.7,.2,1)';
       gaugeFill.style.width = '84%';
-      animNum(gaugeVal, 84, 8000, '', '%');
+      animNum(gaugeVal, 84, 10500, '', '%');
     }, 600));
   }
 
@@ -811,23 +811,23 @@ function runPhase2Classification() {
     b.querySelector('.bucket__bar i').style.width = '0%';
   });
 
-  // Phase 2 window: 14s.
-  // - 0-1.5s: pre-populate pool with first 5 verbatims (staggered)
-  // - 1.5-7s: 3 detailed flights to buckets in non-sequential order
-  // - 7-12s: continuous cascade — new verbatims appear in pool & fly fast,
+  // Phase 2 window: 16s.
+  // - 0-1.8s: pre-populate pool with first 5 verbatims (staggered)
+  // - 2-6.5s: 3 detailed flights to buckets in non-sequential order
+  // - 6.5-13s: continuous cascade — new verbatims appear in pool & fly fast,
   //          counters tick up to suggest hundreds processed
   const subset = CLS_VERBATIMS;
 
   // Pre-fill first 5 verbatims at staggered intervals
   subset.slice(0, 5).forEach((v, i) => {
-    p2Timers.push(setTimeout(() => addPoolChip(v), 200 + i * 280));
+    p2Timers.push(setTimeout(() => addPoolChip(v), 250 + i * 320));
   });
 
   // 3 DETAILED flights to buckets — non-sequential to show AI sorts intelligently
   const detailedFlights = [
-    { idx: 2, at: 1900 }, // Maintenance first
-    { idx: 0, at: 3000 }, // Formation second
-    { idx: 3, at: 4200 }  // Pilotage third
+    { idx: 2, at: 2200 }, // Maintenance first
+    { idx: 0, at: 3600 }, // Formation second
+    { idx: 3, at: 5000 }  // Pilotage third
   ];
 
   detailedFlights.forEach(f => {
@@ -837,8 +837,8 @@ function runPhase2Classification() {
     }, f.at));
   });
 
-  // CASCADE phase — from ~5.2s onward, fire many verbatims fast (no detailed flight)
-  const cascadeStart = 5400;
+  // CASCADE phase — from ~6.4s onward, fire many verbatims fast (no detailed flight)
+  const cascadeStart = 6400;
   const cascadeIndexes = [1, 4, 5, 6, 7, 8, 9, 10, 11];
   cascadeIndexes.forEach((vid, i) => {
     p2Timers.push(setTimeout(() => {
@@ -846,12 +846,12 @@ function runPhase2Classification() {
       if (!pool.querySelector(`.pool-chip[data-vid="${vid}"]`)) addPoolChip(subset[vid]);
       const chip = pool.querySelector(`.pool-chip[data-vid="${vid}"]`);
       if (chip) flyChipToBucket(chip, subset[vid], { fast: true });
-    }, cascadeStart + i * 380));
+    }, cascadeStart + i * 460));
   });
 
   // Counter overshoot: after the visible chips, tick buckets up further to suggest
   // ~80 verbatims sorted across 4 categories (out of 312 total)
-  const overshootStart = cascadeStart + cascadeIndexes.length * 380 + 200;
+  const overshootStart = cascadeStart + cascadeIndexes.length * 460 + 200;
   const targets = { Formation: 23, Standards: 21, Maintenance: 17, Pilotage: 14 };
   Object.entries(targets).forEach(([cat, finalN]) => {
     p2Timers.push(setTimeout(() => {
@@ -955,13 +955,13 @@ const PLAN_ACTIONS = [
   { name: 'Std. formation',     ice: { x: 78, y: 20 }, rm: { pos: 8,  lvl: 1 }, quick: true,  priority: 1, gain: '+3.2', risk: 'low'  },
   { name: '5S pilotes',         ice: { x: 65, y: 32 }, rm: { pos: 22, lvl: 2 }, quick: true,  priority: 2, gain: '+2.1', risk: 'low'  },
   { name: 'SMED presse 4',      ice: { x: 48, y: 50 }, rm: { pos: 40, lvl: 1 }, quick: false, priority: 3, gain: '+2.4', risk: 'med'  },
-  { name: 'TPM préventive',     ice: { x: 28, y: 72 }, rm: { pos: 58, lvl: 2 }, quick: false, priority: 4, gain: '+2.0', risk: 'med'  },
+  { name: 'TPM préventive',     ice: { x: 28, y: 72 }, rm: { pos: 70, lvl: 2 }, quick: false, priority: 4, gain: '+2.0', risk: 'med'  },
   { name: 'AIC matin',          ice: { x: 72, y: 28 }, rm: { pos: 14, lvl: 1 }, quick: true,  priority: 5, gain: '+1.4', risk: 'low'  },
-  { name: 'OPL polyvalence',    ice: { x: 58, y: 42 }, rm: { pos: 30, lvl: 2 }, quick: false, priority: 6, gain: '+1.8', risk: 'low'  },
+  { name: 'OPL polyvalence',    ice: { x: 58, y: 42 }, rm: { pos: 38, lvl: 2 }, quick: false, priority: 6, gain: '+1.8', risk: 'low'  },
   { name: 'MES temps réel',     ice: { x: 22, y: 80 }, rm: { pos: 72, lvl: 1 }, quick: false, priority: 7, gain: '+2.6', risk: 'high' },
   { name: 'S&OP cadence',       ice: { x: 38, y: 60 }, rm: { pos: 50, lvl: 2 }, quick: false, priority: 8, gain: '+1.5', risk: 'med'  },
   { name: 'Mgt visuel ligne',   ice: { x: 68, y: 36 }, rm: { pos: 18, lvl: 1 }, quick: true,  priority: 9, gain: '+0.9', risk: 'low'  },
-  { name: 'TRS auto-relevé',    ice: { x: 30, y: 65 }, rm: { pos: 65, lvl: 2 }, quick: false, priority: 10,gain: '+1.2', risk: 'med'  }
+  { name: 'TRS auto-relevé',    ice: { x: 30, y: 65 }, rm: { pos: 80, lvl: 2 }, quick: false, priority: 10,gain: '+1.2', risk: 'med'  }
 ];
 
 function runPhase3Plan() {
@@ -974,7 +974,8 @@ function runPhase3Plan() {
   stack.innerHTML = '';
   // Clean previously placed
   ice.querySelectorAll('.ice-placed').forEach(n => n.remove());
-  rmCards.innerHTML = '';
+  rmCards.querySelectorAll('.road-seg__dots').forEach(d => { d.innerHTML = ''; });
+  rmCards.querySelectorAll('.road-seg').forEach(s => s.classList.remove('is-flash'));
 
   // Populate pool with all actions
   PLAN_ACTIONS.forEach(a => {
@@ -985,27 +986,27 @@ function runPhase3Plan() {
     stack.appendChild(card);
   });
 
-  // Phase 3 window: 14s.
-  // 0-4.5s: 3 actions placed in detail (1.4s pace) — user sees the AI's reasoning
-  // 4.5-9s: remaining actions cascade fast (every ~600ms) — depth of plan
-  // 9-14s: business case fills.
+  // Phase 3 window: 15s.
+  // 0-5.5s: 3 actions placed in detail (1.6s pace) — user sees the AI's reasoning
+  // 5.5-10s: remaining actions cascade fast (every ~560ms) — depth of plan
+  // 10-15s: business case fills, roadmap 6-12-18 mois complète.
   const DETAILED = 3;
   const detailedActions = PLAN_ACTIONS.slice(0, DETAILED);
   const cascadeActions = PLAN_ACTIONS.slice(DETAILED);
 
   detailedActions.forEach((a, i) => {
-    const t = setTimeout(() => placeAction(a, stack, ice, rmCards, false), 400 + i * 1400);
+    const t = setTimeout(() => placeAction(a, stack, ice, rmCards, false), 500 + i * 1600);
     p3Timers.push(t);
   });
 
-  const cascadeStart = 400 + DETAILED * 1400 + 400;
+  const cascadeStart = 500 + DETAILED * 1600 + 500;
   cascadeActions.forEach((a, i) => {
-    const t = setTimeout(() => placeAction(a, stack, ice, rmCards, true), cascadeStart + i * 480);
+    const t = setTimeout(() => placeAction(a, stack, ice, rmCards, true), cascadeStart + i * 560);
     p3Timers.push(t);
   });
 
   // Business case numbers — start once cascade is done
-  const bcStart = cascadeStart + cascadeActions.length * 480 + 200;
+  const bcStart = cascadeStart + cascadeActions.length * 560 + 200;
   document.querySelectorAll('.app-view--p3 .bc-num').forEach((el, i) => {
     const tgt = parseInt(el.dataset.tgt, 10);
     const pfx = el.dataset.pfx || '';
@@ -1030,13 +1031,20 @@ function placeAction(a, stack, ice, rmCards, fast) {
   ice.appendChild(placed);
   requestAnimationFrame(() => placed.classList.add('is-visible'));
 
-  // Roadmap mini-dot
-  const rmDot = document.createElement('span');
-  rmDot.className = 'rm-mini__action';
-  rmDot.style.left = a.rm.pos + '%';
-  rmDot.title = a.name + ' · ' + a.gain + 'pts';
-  rmCards.appendChild(rmDot);
-  requestAnimationFrame(() => rmDot.classList.add('is-visible'));
+  // Roadmap — l'action atterrit dans son segment 0-6 / 6-12 / 12-18 mois
+  const segIdx = a.rm.pos < 33 ? 1 : (a.rm.pos < 66 ? 2 : 3);
+  const seg = rmCards.querySelector(`.road-seg[data-seg="${segIdx}"]`);
+  if (seg) {
+    const rmDot = document.createElement('span');
+    rmDot.className = 'road-seg__dot' + (a.quick ? ' is-quickwin' : '');
+    rmDot.title = a.name + ' · ' + a.gain + 'pts';
+    seg.querySelector('.road-seg__dots').appendChild(rmDot);
+    requestAnimationFrame(() => rmDot.classList.add('is-visible'));
+    if (!fast) {
+      seg.classList.add('is-flash');
+      setTimeout(() => seg.classList.remove('is-flash'), 380);
+    }
+  }
 }
 
 /* Init: scene 1 visible at load (no auto-play) */
