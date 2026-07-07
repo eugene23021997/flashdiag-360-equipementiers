@@ -613,27 +613,24 @@ ctrlMute.addEventListener('click', () => {
   ctrlMute.textContent = newMuted ? '🔇' : '🔊';
 });
 
-function isFullscreen() {
-  return !!(document.fullscreenElement || document.webkitFullscreenElement);
-}
-function updateFullscreenUI() {
-  const active = isFullscreen();
+// Plein écran "simulé" en CSS (position fixed pleine page) plutôt que l'API
+// Fullscreen native du navigateur : fonctionne partout, y compris quand l'API
+// native est bloquée (iframe sans permission, politique de sécurité, mobile...).
+function setFullscreen(active) {
+  playerEl.classList.toggle('is-fullscreen', active);
+  document.documentElement.classList.toggle('fdplayer-lock-scroll', active);
   ctrlFullscreen.textContent = active ? '⤢' : '⛶';
   ctrlFullscreen.setAttribute('aria-label', active ? 'Quitter le plein écran' : 'Plein écran');
   ctrlFullscreen.setAttribute('title', active ? 'Quitter le plein écran' : 'Plein écran');
-  playerEl.classList.toggle('is-fullscreen', active);
 }
 ctrlFullscreen.addEventListener('click', () => {
-  if (!isFullscreen()) {
-    const req = playerEl.requestFullscreen || playerEl.webkitRequestFullscreen;
-    if (req) req.call(playerEl);
-  } else {
-    const exit = document.exitFullscreen || document.webkitExitFullscreen;
-    if (exit) exit.call(document);
+  setFullscreen(!playerEl.classList.contains('is-fullscreen'));
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && playerEl.classList.contains('is-fullscreen')) {
+    setFullscreen(false);
   }
 });
-document.addEventListener('fullscreenchange', updateFullscreenUI);
-document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
 progress.addEventListener('click', (e) => {
   const rect = progress.getBoundingClientRect();
   const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
