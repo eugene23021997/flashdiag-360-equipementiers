@@ -459,8 +459,6 @@ const playBtn = document.getElementById('playBtn');
 const ctrlPlay = document.getElementById('ctrlPlay');
 const ctrlReplay = document.getElementById('ctrlReplay');
 const ctrlMute = document.getElementById('ctrlMute');
-const ctrlFullscreen = document.getElementById('ctrlFullscreen');
-const playerEl = document.getElementById('player');
 const progressBar = document.getElementById('progressBar');
 const progress = document.getElementById('progress');
 const curTimeEl = document.getElementById('curTime');
@@ -613,24 +611,6 @@ ctrlMute.addEventListener('click', () => {
   ctrlMute.textContent = newMuted ? '🔇' : '🔊';
 });
 
-// Plein écran "simulé" en CSS (position fixed pleine page) plutôt que l'API
-// Fullscreen native du navigateur : fonctionne partout, y compris quand l'API
-// native est bloquée (iframe sans permission, politique de sécurité, mobile...).
-function setFullscreen(active) {
-  playerEl.classList.toggle('is-fullscreen', active);
-  document.documentElement.classList.toggle('fdplayer-lock-scroll', active);
-  ctrlFullscreen.textContent = active ? '⤢' : '⛶';
-  ctrlFullscreen.setAttribute('aria-label', active ? 'Quitter le plein écran' : 'Plein écran');
-  ctrlFullscreen.setAttribute('title', active ? 'Quitter le plein écran' : 'Plein écran');
-}
-ctrlFullscreen.addEventListener('click', () => {
-  setFullscreen(!playerEl.classList.contains('is-fullscreen'));
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && playerEl.classList.contains('is-fullscreen')) {
-    setFullscreen(false);
-  }
-});
 progress.addEventListener('click', (e) => {
   const rect = progress.getBoundingClientRect();
   const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
