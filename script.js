@@ -459,6 +459,8 @@ const playBtn = document.getElementById('playBtn');
 const ctrlPlay = document.getElementById('ctrlPlay');
 const ctrlReplay = document.getElementById('ctrlReplay');
 const ctrlMute = document.getElementById('ctrlMute');
+const ctrlFullscreen = document.getElementById('ctrlFullscreen');
+const playerEl = document.getElementById('player');
 const progressBar = document.getElementById('progressBar');
 const progress = document.getElementById('progress');
 const curTimeEl = document.getElementById('curTime');
@@ -610,6 +612,28 @@ ctrlMute.addEventListener('click', () => {
   music.setMuted(newMuted);
   ctrlMute.textContent = newMuted ? '🔇' : '🔊';
 });
+
+function isFullscreen() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement);
+}
+function updateFullscreenUI() {
+  const active = isFullscreen();
+  ctrlFullscreen.textContent = active ? '⤢' : '⛶';
+  ctrlFullscreen.setAttribute('aria-label', active ? 'Quitter le plein écran' : 'Plein écran');
+  ctrlFullscreen.setAttribute('title', active ? 'Quitter le plein écran' : 'Plein écran');
+  playerEl.classList.toggle('is-fullscreen', active);
+}
+ctrlFullscreen.addEventListener('click', () => {
+  if (!isFullscreen()) {
+    const req = playerEl.requestFullscreen || playerEl.webkitRequestFullscreen;
+    if (req) req.call(playerEl);
+  } else {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit) exit.call(document);
+  }
+});
+document.addEventListener('fullscreenchange', updateFullscreenUI);
+document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
 progress.addEventListener('click', (e) => {
   const rect = progress.getBoundingClientRect();
   const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));

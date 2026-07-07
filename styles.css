@@ -1239,6 +1239,33 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   background: #0B0405;
   overflow: hidden;
 }
+.player.is-fullscreen,
+.player:fullscreen,
+.player:-webkit-full-screen {
+  max-width: none;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border: 0;
+  background: #000;
+}
+.player.is-fullscreen .player__screen,
+.player:fullscreen .player__screen,
+.player:-webkit-full-screen .player__screen {
+  flex: 1;
+  aspect-ratio: unset;
+  min-height: 0;
+}
+.player.is-fullscreen .player__bar,
+.player:fullscreen .player__bar,
+.player:-webkit-full-screen .player__bar,
+.player.is-fullscreen .player__chapter-labels,
+.player:fullscreen .player__chapter-labels,
+.player:-webkit-full-screen .player__chapter-labels {
+  flex: none;
+}
 .scene {
   position: absolute;
   inset: 0;
