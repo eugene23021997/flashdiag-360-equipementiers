@@ -127,6 +127,14 @@ border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;f
     body.scrollTop = body.scrollHeight;
     return div;
   }
+  function addBadge(text) {
+    var div = document.createElement("div");
+    div.className = "fdchat-mailok";
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
   function showWelcome() {
     if (started) return;
     started = true;
@@ -223,6 +231,8 @@ border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;f
                 botText += evt.text;
                 botDiv.innerHTML = render(botText);
                 body.scrollTop = body.scrollHeight;
+              } else if (evt.type === "lead_recorded") {
+                addBadge("✓ Demande enregistrée pour l'équipe BearingPoint");
               } else if (evt.type === "error") {
                 if (!botDiv) { typing.remove(); botDiv = addMsg("assistant", ""); }
                 botText += (botText ? "\n\n" : "") + "⚠️ " + evt.message;
