@@ -5,9 +5,8 @@
 (function () {
   "use strict";
 
-  var API_BASE =
-    window.FLASHDIAG_CHAT_API ||
-    "https://flashdiag-chat-api.jollytree-11571a1c.francecentral.azurecontainerapps.io";
+  // Même origine que le site — le backend Express sert à la fois le site et l'API du chat.
+  var API_BASE = window.FLASHDIAG_CHAT_API || "";
 
   var SUGGESTIONS = [
     "En quoi consiste Flash Diag 360 ?",
