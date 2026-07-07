@@ -72,17 +72,6 @@ border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;f
 .fdchat-send:disabled{opacity:.45;cursor:default;transform:none;}\
 .fdchat-send svg{width:18px;height:18px;fill:#fff;}\
 .fdchat-note{text-align:center;font-size:10.5px;color:#7A7A85;padding:0 12px 8px;background:#fff;}\
-.fdchat-gate{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:28px 26px;background:#FAFAFB;}\
-.fdchat-gate h3{font-size:16.5px;color:#0E0E12;letter-spacing:-.01em;}\
-.fdchat-gate p{font-size:13px;color:#4A4A55;line-height:1.55;margin-bottom:4px;}\
-.fdchat-gate input{border:1px solid #DCDCE2;border-radius:12px;padding:12px 14px;font-size:14px;\
-font-family:inherit;outline:none;background:#fff;color:#0E0E12;}\
-.fdchat-gate input:focus{border-color:#FF4D52;}\
-.fdchat-gate-err{color:#E03540;font-size:12px;display:none;}\
-.fdchat-gate button{background:linear-gradient(135deg,#FF4D52,#E03540);color:#fff;border:0;border-radius:999px;\
-padding:12px 20px;font-weight:600;font-size:14px;cursor:pointer;transition:transform .15s;}\
-.fdchat-gate button:hover{transform:scale(1.02);}\
-.fdchat-gate-priv{font-size:10.5px;color:#7A7A85;text-align:center;margin-top:2px;}\
 @media (max-width:480px){#fdchat-panel{right:16px;bottom:90px;}#fdchat-btn{bottom:16px;right:16px;}}";
 
   var style = document.createElement("style");
@@ -105,20 +94,12 @@ padding:12px 20px;font-weight:600;font-size:14px;cursor:pointer;transition:trans
     '<div class="fdchat-head__t"><b>Assistant Flash Diag 360°</b>' +
     "<span><i></i>En ligne · propulsé par l'IA</span></div>" +
     '<button class="fdchat-close" aria-label="Fermer">×</button></div>' +
-    '<div class="fdchat-gate" id="fdchat-gate">' +
-    "<h3>Avant de commencer 👋</h3>" +
-    "<p>Laissez-nous votre email professionnel pour que nous puissions retrouver facilement votre échange et vous recontacter si besoin.</p>" +
-    '<input type="email" id="fdchat-gate-email" placeholder="vous@entreprise.com" autocomplete="email" />' +
-    '<span class="fdchat-gate-err" id="fdchat-gate-err">Merci de renseigner un email valide.</span>' +
-    '<button id="fdchat-gate-submit">Démarrer la conversation →</button>' +
-    '<span class="fdchat-gate-priv">Utilisé uniquement pour le suivi de votre demande.</span>' +
-    "</div>" +
-    '<div class="fdchat-body" id="fdchat-body" style="display:none"></div>' +
-    '<div class="fdchat-foot" style="display:none">' +
+    '<div class="fdchat-body" id="fdchat-body"></div>' +
+    '<div class="fdchat-foot">' +
     '<textarea class="fdchat-input" id="fdchat-input" rows="1" placeholder="Votre question…"></textarea>' +
     '<button class="fdchat-send" id="fdchat-send" aria-label="Envoyer">' +
     '<svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></button></div>' +
-    '<div class="fdchat-note" id="fdchat-note" style="display:none">Assistant IA — les informations importantes sont à confirmer avec nos équipes.</div>';
+    '<div class="fdchat-note">Assistant IA — les informations importantes sont à confirmer avec nos équipes.</div>';
 
   document.body.appendChild(btn);
   document.body.appendChild(panel);
@@ -126,20 +107,10 @@ padding:12px 20px;font-weight:600;font-size:14px;cursor:pointer;transition:trans
   var body = panel.querySelector("#fdchat-body");
   var input = panel.querySelector("#fdchat-input");
   var sendBtn = panel.querySelector("#fdchat-send");
-  var foot = panel.querySelector(".fdchat-foot");
-  var note = panel.querySelector("#fdchat-note");
-  var gate = panel.querySelector("#fdchat-gate");
-  var gateEmailInput = panel.querySelector("#fdchat-gate-email");
-  var gateErr = panel.querySelector("#fdchat-gate-err");
-  var gateBtn = panel.querySelector("#fdchat-gate-submit");
 
   var history = []; // {role, content}
   var busy = false;
   var started = false;
-  var visitorEmail = null;
-  try {
-    visitorEmail = localStorage.getItem("fdchat_email") || null;
-  } catch (e) {}
 
   function escapeHtml(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -182,62 +153,13 @@ padding:12px 20px;font-weight:600;font-size:14px;cursor:pointer;transition:trans
     body.appendChild(sugg);
   }
 
-  function openChat() {
-    gate.style.display = "none";
-    body.style.display = "flex";
-    foot.style.display = "flex";
-    note.style.display = "block";
-    showWelcome();
-    setTimeout(function () { input.focus(); }, 100);
-  }
-
-  function openGate() {
-    gate.style.display = "flex";
-    body.style.display = "none";
-    foot.style.display = "none";
-    note.style.display = "none";
-    setTimeout(function () { gateEmailInput.focus(); }, 100);
-  }
-
-  function isValidEmail(v) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  }
-
-  function submitGate() {
-    var val = gateEmailInput.value.trim();
-    if (!isValidEmail(val)) {
-      gateErr.style.display = "block";
-      gateEmailInput.focus();
-      return;
-    }
-    gateErr.style.display = "none";
-    visitorEmail = val;
-    try { localStorage.setItem("fdchat_email", val); } catch (e) {}
-    fetch(API_BASE + "/api/identify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: val }),
-    }).catch(function () {});
-    openChat();
-  }
-  gateBtn.onclick = submitGate;
-  gateEmailInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      submitGate();
-    }
-  });
-  gateEmailInput.addEventListener("input", function () {
-    gateErr.style.display = "none";
-  });
-
   function toggle(open) {
     var isOpen = panel.classList.contains("fdchat-open");
     var next = open === undefined ? !isOpen : open;
     panel.classList.toggle("fdchat-open", next);
     if (next) {
-      if (visitorEmail) openChat();
-      else openGate();
+      showWelcome();
+      setTimeout(function () { input.focus(); }, 100);
     }
   }
   btn.onclick = function () { toggle(); };
@@ -282,7 +204,7 @@ padding:12px 20px;font-weight:600;font-size:14px;cursor:pointer;transition:trans
     fetch(API_BASE + "/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: history, email: visitorEmail }),
+      body: JSON.stringify({ messages: history }),
     })
       .then(function (resp) {
         if (!resp.ok || !resp.body) throw new Error("HTTP " + resp.status);

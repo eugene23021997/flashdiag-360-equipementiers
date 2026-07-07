@@ -3769,6 +3769,9 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 }
 .footer .logo-text { color: var(--bp-white); font-size: 18px; font-family: var(--font-display); font-weight: 700; }
 .footer__brand p { margin-top: 4px; font-size: 12.5px; }
+.footer__legal { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+.footer__site-link { color: var(--bp-red); font-weight: 600; font-size: 12.5px; transition: opacity .2s ease; }
+.footer__site-link:hover { opacity: .75; }
 
 /* ============== REVEAL ON SCROLL ============== */
 .reveal {
