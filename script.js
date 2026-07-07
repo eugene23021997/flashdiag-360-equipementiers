@@ -126,33 +126,70 @@ class AmbientMusic {
     this.master = null;
     this.scheduled = false;
     this.muted = false;
+    this.buffer = null;     // piste entière pré-calculée (rendu hors-ligne)
+    this.rendering = null;  // promesse de rendu en cours
+    this.source = null;     // noeud de lecture du buffer courant
   }
-  init() {
+  // Calcule toute la piste une seule fois via OfflineAudioContext — évite de
+  // synthétiser ~1500 notes en temps réel pendant la lecture (source du son
+  // haché/coupé). La lecture réelle ne fait ensuite que streamer ce buffer.
+  renderBuffer() {
+    if (this.buffer) return Promise.resolve(this.buffer);
+    if (this.rendering) return this.rendering;
+    const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if (!OAC) return Promise.resolve(null);
+    const offlineCtx = new OAC(2, Math.ceil(44100 * (TOTAL + 1)), 44100);
+    const offlineMaster = offlineCtx.createGain();
+    offlineMaster.gain.value = 0.22;
+    const comp = offlineCtx.createDynamicsCompressor();
+    comp.threshold.value = -14;
+    comp.knee.value = 8;
+    comp.ratio.value = 5;
+    comp.attack.value = 0.003;
+    comp.release.value = 0.18;
+    offlineMaster.connect(comp).connect(offlineCtx.destination);
+
+    // Bascule temporairement le graphe des voix vers le contexte hors-ligne
+    const prevCtx = this.ctx, prevMaster = this.master;
+    this.ctx = offlineCtx;
+    this.master = offlineMaster;
+    this.scheduleTrack(0.05);
+    this.ctx = prevCtx;
+    this.master = prevMaster;
+
+    this.rendering = offlineCtx.startRendering().then((buf) => {
+      this.buffer = buf;
+      this.rendering = null;
+      return buf;
+    }).catch(() => { this.rendering = null; return null; });
+    return this.rendering;
+  }
+  ensureLiveContext() {
     if (this.ctx) return;
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     this.ctx = new AC();
     this.master = this.ctx.createGain();
     this.master.gain.value = this.muted ? 0 : 0.22;
-    const comp = this.ctx.createDynamicsCompressor();
-    comp.threshold.value = -14;
-    comp.knee.value = 8;
-    comp.ratio.value = 5;
-    comp.attack.value = 0.003;
-    comp.release.value = 0.18;
-    this.master.connect(comp).connect(this.ctx.destination);
+    this.master.connect(this.ctx.destination);
   }
-  start() {
-    this.init();
+  async start() {
+    this.ensureLiveContext();
     if (!this.ctx) return;
     if (this.ctx.state === 'suspended') this.ctx.resume();
     if (this.scheduled) return;
     this.scheduled = true;
-    this.scheduleTrack(this.ctx.currentTime + 0.05);
+    const buf = await this.renderBuffer();
+    if (!buf || !this.ctx) return;
+    this.source = this.ctx.createBufferSource();
+    this.source.buffer = buf;
+    this.source.connect(this.master);
+    this.source.start(this.ctx.currentTime + 0.02);
   }
   pause() { if (this.ctx) this.ctx.suspend(); }
   resume() { if (this.ctx) this.ctx.resume(); }
   reset() {
+    if (this.source) { try { this.source.stop(); } catch(e) {} this.source = null; }
     if (this.ctx) {
       try { this.ctx.close(); } catch(e) {}
       this.ctx = null;
@@ -436,6 +473,7 @@ class AmbientMusic {
   }
 }
 const music = new AmbientMusic();
+music.renderBuffer(); // pré-calcule la piste en arrière-plan (pas besoin de geste utilisateur pour un rendu hors-ligne)
 
 /* =====================================================
    DEMO VIDEO PLAYER · EXPLANATORY VERSION
