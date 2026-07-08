@@ -473,7 +473,13 @@ class AmbientMusic {
   }
 }
 const music = new AmbientMusic();
-music.renderBuffer(); // pré-calcule la piste en arrière-plan (pas besoin de geste utilisateur pour un rendu hors-ligne)
+// Pré-calcule la piste pendant que le navigateur est inactif (pas au chargement
+// direct) pour ne pas bloquer le thread principal juste après l'arrivée de la page.
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => music.renderBuffer(), { timeout: 4000 });
+} else {
+  setTimeout(() => music.renderBuffer(), 1500);
+}
 
 /* =====================================================
    DEMO VIDEO PLAYER · EXPLANATORY VERSION
